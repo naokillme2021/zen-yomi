@@ -1,0 +1,5 @@
+emoji==0.5.4
+mecab-python-windows==0.996.3
+neologdn==0.4
+oseti==0.2
+sengiri==0.2.1
