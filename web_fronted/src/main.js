@@ -4,11 +4,12 @@ import ReactDOM from 'react-dom';
 import { makeStyles } from '@material-ui/styles';
 import { theme } from './styles/theme';
 import { Box, Typography } from '../node_modules/@material-ui/core';
+import Cards from './component/Cards';
 
 const useStyles = makeStyles({
     NegaPosiTop: {
         textAlign: 'center'
-    },
+    },  
     NewsBox: {
         textAlign: 'left',
         marginLeft: 60,
@@ -16,21 +17,20 @@ const useStyles = makeStyles({
     },
 });
 
-function NegaPosiNews() {
+const NegaPosiNews = () => {
     const classes = useStyles();
 
     return(
         <div className={classes.NegaPosiTop}>
             <h1>ネガポジニュース一覧</h1>
             <NegaBoxPosi />
-
-            
+            <Cards />
             <NegaBoxNega />
         </div>
     );
 }
 
-function NegaBoxPosi() {
+const NegaBoxPosi = () => {
     const classes = useStyles();
 
     return(
@@ -52,7 +52,7 @@ function NegaBoxPosi() {
     );
 }
 
-function NegaBoxNega() {
+const NegaBoxNega = () => {
     const classes = useStyles();
 
     return(
