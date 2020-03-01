@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 
 import { makeStyles } from '@material-ui/styles';
 import { theme } from './styles/theme';
-import { Box, Typography } from '../node_modules/@material-ui/core';
+import { Box, Typography, GridList } from '../node_modules/@material-ui/core';
 import Cards from './component/Cards';
+import News from '../data/News.json';
 
 const useStyles = makeStyles({
     NegaPosiTop: {
@@ -19,12 +20,21 @@ const useStyles = makeStyles({
 
 const NegaPosiNews = () => {
     const classes = useStyles();
+    const length = Object.keys(News).length;
 
     return(
         <div className={classes.NegaPosiTop}>
             <h1>ネガポジニュース一覧</h1>
             <NegaBoxPosi />
-            <Cards />
+            <div>
+                <GridList>
+                    {(() => {
+                        for (let i = 0; i < length; i++) {
+                            <Cards />
+                        }
+                    })()};
+                </GridList>
+            </div>
             <NegaBoxNega />
         </div>
     );

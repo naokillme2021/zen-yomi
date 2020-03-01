@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from '../../node_modules/@material-ui/core';
 import { typography } from '../../node_modules/@material-ui/system';
+import News from '../data/News.json';
 
 const useStyles = makeStyles({
     root: {
@@ -20,10 +21,11 @@ const data = [
 ];
 
 class Square extends React.Component {
+    
     render() {
         return (
             this.props.data.map((data) => 
-                <div>{data.author}</div>
+                <div>{data.headline}</div>
             )
         );
     }
@@ -31,6 +33,9 @@ class Square extends React.Component {
 
 const Cards = () => {
     const classes = useStyles();
+    const length = Object.keys(News).length;
+
+    console.log(length);
 
     const renderSquare = (props) => {
         return <Square data={props} />
@@ -46,7 +51,7 @@ const Cards = () => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {renderSquare(data)}
+                        {renderSquare(News)}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         土萠 ほたるちゃんがババ抜きで負けたようだ。
