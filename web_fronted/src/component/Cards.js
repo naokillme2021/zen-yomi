@@ -15,31 +15,10 @@ const useStyles = makeStyles({
     },
 })
 
-const data = [
-    {id: 1, author: "Tanaka"},
-    {id: 2, author: "Matsumoto"}
-];
+const Cards = props => {
 
-class Square extends React.Component {
-    
-    render() {
-        return (
-            this.props.data.map((data) => 
-                <div>{data.headline}</div>
-            )
-        );
-    }
-}
-
-const Cards = () => {
+    const {headl, word} = props;
     const classes = useStyles();
-    const length = Object.keys(News).length;
-
-    console.log(length);
-
-    const renderSquare = (props) => {
-        return <Square data={props} />
-    };
 
     return (
         <Card className={classes.root}>
@@ -51,10 +30,10 @@ const Cards = () => {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {renderSquare(News)}
+                        {headl}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        土萠 ほたるちゃんがババ抜きで負けたようだ。
+                        {word}
                     </Typography>
                 </CardContent>
             </CardActionArea>
