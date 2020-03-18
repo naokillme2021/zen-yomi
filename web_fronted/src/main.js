@@ -29,27 +29,46 @@ const NegaPosiNews = () => {
     axios.defaults.withCredentials = true;
     const [newsData, setNewsData] = useState();
 
-    const getData = async () => {
-        try {
-            console.log("ここまでは来てる？");
-            const result = await axios.get(
-                `https://n9rsktt3h2.execute-api.us-east-2.amazonaws.com/zen-Yomu-mock/news/`,
-                {
-                    withCredentials: true
-                }
-            );
-            console.log(result);
-        } catch(err) {
-            console.log("error!");
-        }
-    }
+    // const getData = async () => {
+    //     try {
+    //         console.log("ここまでは来てる？");
+    //         const result = await axios.get(
+    //             `https://n9rsktt3h2.execute-api.us-east-2.amazonaws.com/zen-Yomu-mock/news/`,
+    //             {
+    //                 withCredentials: false,
+    //                 credentials: 'include',
+    //                 method: 'GET',
+    //             }
+    //         );
+    //         console.log(result.data.news);
+    //         //setNewsData(result.data.news)
+    //     } catch(err) {
+    //         console.log("error!");
+    //     }
+    // }
 
     const classes = useStyles();
     useEffect(() => {
-        getData();
-    });
+        const getData = async () => {
+            try {
+                const result = await axios.get(
+                    `https://n9rsktt3h2.execute-api.us-east-2.amazonaws.com/zen-Yomu-mock/news/`,
+                    {
+                        withCredentials: false,
+                        credentials: 'include',
+                        method: 'GET',
+                    }
+                );
+                //console.log(result.data.news);
+                setNewsData(result.data.news)
+            } catch(err) {
+                console.log("error!");
+            }
+        }
+        getData()
+    }, [newsData]);
     
-    console.log(newsData);
+
 
     return(
         <div className={classes.NegaPosiTop}>
@@ -57,11 +76,12 @@ const NegaPosiNews = () => {
             <NegaBoxPosi />
             <div>
                 <GridList>
-                    
+                    {/* {News.map((item) => (
+                        <Cards headl={item.headline} word={item.words} />
+                    ))} */}
                 </GridList>
             </div>
             <NegaBoxNega />
-            <button onClick={() => getData()}>get profile!</button>
         </div>
     );
 }
