@@ -17,7 +17,7 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://n9rsktt3h2
 const useStyles = makeStyles({
     NegaPosiTop: {
         textAlign: 'center'
-    },  
+    },
     NewsBox: {
         textAlign: 'left',
         marginLeft: 60,
@@ -67,8 +67,9 @@ const NegaPosiNews = () => {
         }
         getData()
     }, [newsData]);
-    
 
+    console.log(newsData)
+    //console.log(News)
 
     return(
         <div className={classes.NegaPosiTop}>
@@ -79,6 +80,10 @@ const NegaPosiNews = () => {
                     {/* {News.map((item) => (
                         <Cards headl={item.headline} word={item.words} />
                     ))} */}
+                    {/* レンダリングする前に、アイテムがnull / undefinedでないことを確認する必要があります。 */}
+                    {newsData && newsData.map((item)=>(
+                        <Cards title={item.title} image={item.image} negaposi={item.negaposi} content={item.content}/>
+                    ))}
                 </GridList>
             </div>
             <NegaBoxNega />
