@@ -23,6 +23,10 @@ const useStyles = makeStyles({
         marginLeft: 60,
         marginRight: 60,
     },
+    NewsPadding: {
+        paddingTop: 3,
+        paddingBottom: 4,
+    },
 });
 
 const NegaPosiNews = () => {
@@ -68,25 +72,30 @@ const NegaPosiNews = () => {
         getData()
     }, [newsData]);
 
-    console.log(newsData)
+    //console.log(newsData)
     //console.log(News)
 
     return(
         <div className={classes.NegaPosiTop}>
             <h1>ネガポジニュース一覧</h1>
             <NegaBoxPosi />
-            <div>
+            <div className={classes.NewsPadding}>
                 <GridList>
-                    {/* {News.map((item) => (
-                        <Cards headl={item.headline} word={item.words} />
-                    ))} */}
                     {/* レンダリングする前に、アイテムがnull / undefinedでないことを確認する必要があります。 */}
                     {newsData && newsData.map((item)=>(
-                        <Cards title={item.title} image={item.image} negaposi={item.negaposi} content={item.content}/>
+                        <JudgePosi   title={item.title} image={item.image} negaposi={item.negaposi} content={item.content}/>
                     ))}
                 </GridList>
             </div>
             <NegaBoxNega />
+            <div className={classes.NewsPadding}>
+                <GridList>
+                    {/* レンダリングする前に、アイテムがnull / undefinedでないことを確認する必要があります。 */}
+                    {newsData && newsData.map((item)=>(
+                        <JudgeNega   title={item.title} image={item.image} negaposi={item.negaposi} content={item.content}/>
+                    ))}
+                </GridList>
+            </div>
         </div>
     );
 }
@@ -133,6 +142,38 @@ const NegaBoxNega = () => {
             </Typography>
         </Box>
     );
+}
+
+const JudgePosi = props => {
+
+    const {title, image, negaposi, content} = props;
+
+    // console.log("テスト")
+    // console.log(negaposi)
+
+    if (negaposi === "True") {
+        return (
+            <Cards title={title} image={image} content={content}/>
+        ); 
+    } else {
+        return (null);
+    }
+}
+
+const JudgeNega = props => {
+
+    const {title, image, negaposi, content} = props;
+
+    // console.log("テスト")
+    // console.log(negaposi)
+
+    if (negaposi === "false") {
+        return (
+            <Cards title={title} image={image} content={content}/>
+        ); 
+    } else {
+        return (null);
+    }
 }
 
 export default NegaPosiNews;
