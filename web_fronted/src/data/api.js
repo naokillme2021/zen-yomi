@@ -1,0 +1,1 @@
+export const TEST_NEWS = 'https://n9rsktt3h2.execute-api.us-east-2.amazonaws.com/zen-Yomu-mock/news/'
